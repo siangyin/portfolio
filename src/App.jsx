@@ -1,5 +1,5 @@
 import Header from "./components/layout/Header"
-// import Hero from "./components/sections/Hero"
+import Hero from "./components/sections/Hero"
 
 function App() {
   return (
@@ -7,9 +7,7 @@ function App() {
       <Header />
 
       <main>
-        <section id="home" className="px-6 py-24">
-          Header done. Hero next.
-        </section>
+        <Hero />
       </main>
     </div>
   )

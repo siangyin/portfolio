@@ -78,14 +78,8 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div
-          className={`
-    md:hidden px-4 pt-4 overflow-hidden transition-all duration-300
-    ${isMobileMenuOpen ? "max-h-96 pb-4" : "max-h-0 pb-0"}
-  `}
-        >
-          {/* Floating Card */}
-          <div className="mt-2 rounded-2xl border bg-card shadow-lg dark:shadow-black/40">
+        <div className="absolute left-0 top-full z-50 w-full px-4 pt-4 md:hidden">
+          <div className="rounded-2xl border bg-card shadow-xl shadow-black/10 dark:shadow-black/40">
             <nav className="flex flex-col divide-y divide-black/5 dark:divide-white/10">
               {navItems.map((item) => (
                 <a
