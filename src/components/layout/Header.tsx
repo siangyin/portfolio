@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react"
+import { CgMenuRightAlt, CgClose } from "react-icons/cg"
+
 import ThemeToggle from "../ui/ThemeToggle"
 
 const navItems = [
@@ -9,12 +12,35 @@ const navItems = [
 ]
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [isMobileMenuOpen])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-black/10 bg-(--bg)/80 backdrop-blur-md dark:border-white/10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+    <header className="sticky top-0 z-50 bg-(--bg)/80 backdrop-blur-md dark:border-white/10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5  border-b border-black/10 dark:border-white/10">
         {/* Logo */}
         <a
           href="#home"
+          onClick={closeMobileMenu}
           className="flex items-center gap-2 font-mono text-base font-bold tracking-tight"
         >
           <span className="text-green-500">&gt;_</span>
@@ -40,13 +66,41 @@ export default function Header() {
 
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-full border md:hidden"
-            aria-label="Open menu"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="flex h-9 w-9 items-center justify-center text-3xl md:hidden"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
-            ☰
+            {isMobileMenuOpen ? <CgClose /> : <CgMenuRightAlt />}
           </button>
         </div>
       </div>
+
+      {/* Mobile Nav */}
+      {isMobileMenuOpen && (
+        <div
+          className={`
+    md:hidden px-4 pt-4 overflow-hidden transition-all duration-300
+    ${isMobileMenuOpen ? "max-h-96 pb-4" : "max-h-0 pb-0"}
+  `}
+        >
+          {/* Floating Card */}
+          <div className="mt-2 rounded-2xl border bg-card shadow-lg dark:shadow-black/40">
+            <nav className="flex flex-col divide-y divide-black/5 dark:divide-white/10">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className="px-4 py-4 text-sm font-medium transition hover:bg-black/5 hover:text-green-500 dark:hover:bg-white/10"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

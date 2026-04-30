@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import { CiLight } from "react-icons/ci"
-import { MdDarkMode } from "react-icons/md"
+import { MdSunny, MdDarkMode } from "react-icons/md"
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false)
@@ -34,7 +33,7 @@ export default function ThemeToggle() {
           isDark ? "translate-x-7" : "translate-x-0"
         }`}
       >
-        {isDark ? <MdDarkMode /> : <CiLight />}
+        {isDark ? <MdDarkMode /> : <MdSunny />}
       </span>
     </button>
   )
