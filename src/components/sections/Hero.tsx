@@ -15,7 +15,7 @@ export default function Hero() {
           Available for work
         </div>
 
-        <h1 className="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+        <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
           I build practical web tools that solve{" "}
           <span className="relative inline-block text-green-500">
             real-world
@@ -25,7 +25,7 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 max-w-xl text-base leading-7 text-muted md:text-lg">
-          Frontend / Product Engineer focused on building clean, usable, and
+          Frontend / Software Engineer focused on building clean, usable, and
           production-ready applications.
         </p>
 
@@ -79,17 +79,12 @@ export default function Hero() {
           <pre className="mt-4 whitespace-pre-wrap text-[13px] leading-7">
             {`{
   "name": "Siangyin",
-  "role": "Frontend / Product Engineer",
-  "location": "Malaysia",
+  "role": "Frontend / Software Engineer",
+  "location": "Singapore",
   "focus": [
     "Building practical web applications",
     "Clean UI & great user experience",
     "Performance & scalability"
-  ],
-  "currently_building": [
-    "Finance Tracker",
-    "OTA Travel Platform",
-    "AI-assisted tools"
   ]
 }`}
           </pre>
